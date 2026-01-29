@@ -1,18 +1,25 @@
 <script setup lang="ts">
-import useChat from "~/composables/useChat";
 import ChatInput from "./ChatInput.vue";
 import useChatScroll from "~/composables/useChatScroll";
+import type { ChatMessage, Chat } from "../types";
 
-const { chat, messages, sendMessage } = useChat();
+// Extract logic from component
+const props = defineProps<{
+  messages: ChatMessage[];
+  chat: Chat;
+}>();
+
+const emit = defineEmits(["send-message"]);
+
 const { showScrollButton, scrollToBottom, pinToBottom } = useChatScroll();
 
 const scrollContainer = ref(null);
 
 const handleSendMessage = (message: string) => {
-  sendMessage(message);
+  emit("send-message", message);
 };
 
-watch(() => messages.value, pinToBottom, { deep: true });
+watch(() => props.messages, pinToBottom, { deep: true });
 </script>
 
 <template>

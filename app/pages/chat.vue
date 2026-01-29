@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import useChat from "~/composables/useChat";
+
+const { chat, messages, sendMessage } = useChat();
+</script>
 
 <template>
-  <ChatWindow />
+  <ChatWindow :messages="messages" :chat @send-message="sendMessage" />
 </template>
