@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import useChat from "~/composables/useChat";
 import ChatInput from "./ChatInput.vue";
+import useChatScroll from "~/composables/useChatScroll";
 
 const { chat, messages, sendMessage } = useChat();
+const { showScrollButton, scrollToBottom, pinToBottom } = useChatScroll();
 
-const scrollContainerRef = ref(null);
+const scrollContainer = ref(null);
 
 const handleSendMessage = (message: string) => {
   sendMessage(message);
 };
+
+watch(() => messages.value, pinToBottom, { deep: true });
 </script>
 
 <template>
-  <div ref="scrollContainerRef" class="scroll-container">
+  <div ref="scrollContainer" class="scroll-container">
     <UContainer class="chat-container">
       <div v-if="!messages?.length" class="empty-state">
         <div class="empty-state-card">
@@ -40,6 +44,16 @@ const handleSendMessage = (message: string) => {
           </div>
         </div>
         <div class="message-form-container">
+          <div class="scroll-to-bottom-button-container">
+            <UButton
+              v-if="showScrollButton"
+              color="neutral"
+              variant="outline"
+              icon="i-heroicons-arrow-down"
+              class="rounded-full shadow-sm"
+              @click="() => scrollToBottom()"
+            />
+          </div>
           <ChatInput @send-message="handleSendMessage" />
         </div>
       </template>
