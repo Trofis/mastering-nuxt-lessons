@@ -1,8 +1,9 @@
 import { createUserSchema } from "../schemas/user.schema";
-import { validateBody } from "../utils/validation";
+import { pipeBody } from "../utils/validation";
 
 export default defineEventHandler(async (event) => {
-  const data = await validateBody(createUserSchema)(event);
+  // Pipe body data
+  const data = await pipeBody(createUserSchema, event);
 
   return data;
 });
