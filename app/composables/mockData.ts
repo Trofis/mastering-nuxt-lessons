@@ -1,4 +1,6 @@
-export const MOCK_CHAT = {
+import type { Chat } from "~/types";
+
+export const MOCK_CHAT: Chat = {
   id: "1",
   title: "My first chat",
   messages: [

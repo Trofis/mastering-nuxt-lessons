@@ -1,4 +1,4 @@
-import type { Chat, ChatMessage } from "../types";
+import type { Chat, ChatMessage } from "~/types";
 import { MOCK_CHAT } from "./mockData";
 
 export default function useChat() {
@@ -15,12 +15,21 @@ export default function useChat() {
     };
   };
 
-  const sendMessage = (message: string) => {
+  const sendMessage = async (message: string) => {
     messages.value.push(createMessage(message, "user"));
 
-    setTimeout(() => {
-      messages.value.push(createMessage(`You said: ${message}`, "assistant"));
-    }, 1000);
+    const data = await $fetch<ChatMessage>("/api/ai", {
+      method: "POST",
+      body: {
+        messages: messages.value,
+      },
+    });
+
+    messages.value.push(createMessage(data.content, "assistant"));
+
+    // setTimeout(() => {
+    //   messages.value.push(createMessage(`You said: ${message}`, "assistant"));
+    // }, 1000);
   };
 
   return {

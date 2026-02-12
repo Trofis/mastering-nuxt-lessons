@@ -3,9 +3,25 @@ import useChat from "~/composables/useChat";
 
 const { chat, messages, sendMessage } = useChat();
 
+const typing = ref(false);
+
+const handleSendMessage = async (message: string) => {
+  typing.value = true;
+  await sendMessage(message);
+  typing.value = false;
+};
+
+const appConfig = useAppConfig();
+
+const title = computed(() =>
+  chat.value?.title
+    ? `${chat.value.title} - ${appConfig.title}`
+    : appConfig.title,
+);
+console.log(title.value);
 // Change settings of the page
-useHeadSafe({
-  title: chat.value?.title,
+useHead({
+  title: title.value as string,
   htmlAttrs: {
     lang: "en",
     class: "my-reality-is-cool",
@@ -20,5 +36,10 @@ useHeadSafe({
 </script>
 
 <template>
-  <ChatWindow :messages="messages" :chat @send-message="sendMessage" />
+  <ChatWindow
+    :typing
+    :messages="messages"
+    :chat
+    @send-message="handleSendMessage"
+  />
 </template>

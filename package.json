@@ -13,8 +13,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^3.0.25",
     "@nuxt/eslint": "1.12.1",
     "@nuxt/ui": "^4.3.0",
+    "@openrouter/ai-sdk-provider": "^2.1.1",
+    "ai": "^6.0.69",
     "eslint": "^9.0.0",
     "husky": "^9.1.7",
     "nuxt": "^4.2.2",
@@ -24,6 +27,8 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@iconify-json/heroicons": "^1.2.3",
+    "@nuxtjs/mdc": "^0.20.1",
     "typescript": "^5.9.3"
   }
 }

@@ -7,6 +7,7 @@ import type { ChatMessage, Chat } from "../types";
 const props = defineProps<{
   messages: ChatMessage[];
   chat: Chat;
+  typing: boolean;
 }>();
 
 const emit = defineEmits(["send-message"]);
@@ -46,9 +47,12 @@ watch(() => props.messages, pinToBottom, { deep: true });
             }"
           >
             <div class="message-content">
-              {{ message.content }}
+              <MarkdownRenderer :content="message.content" />
             </div>
           </div>
+          <span v-if="typing" class="message-ai typing-indicator">
+            &#9611;
+          </span>
         </div>
         <div class="message-form-container">
           <div class="scroll-to-bottom-button-container">
@@ -196,5 +200,11 @@ watch(() => props.messages, pinToBottom, { deep: true });
 
 .message-input::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+.typing-indicator {
+  display: inline-block;
+  animation: pulse 1s infinite;
+  margin: 0.25rem;
 }
 </style>
