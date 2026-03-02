@@ -1,8 +1,9 @@
-import type { Chat, ChatMessage } from "~/types";
-import { MOCK_CHAT } from "./mockData";
+import type { ChatMessage } from "~/types";
+import useChats from "./useChats";
 
-export default function useChat() {
-  const chat = ref<Chat>(MOCK_CHAT);
+export default function useChat(chatId: string) {
+  const { chats } = useChats();
+  const chat = computed(() => chats.value.find((c) => c.id === chatId));
 
   const messages = computed<ChatMessage[]>(() => chat.value?.messages || []);
 
