@@ -42,8 +42,6 @@ const lastWeekChats = filterChats(1, 7);
 const lastMonthChats = filterChats(7, 30);
 const olderChats = filterChats(30);
 
-const formattedChats = computed(() => chats.value.map(formatChatItem));
-
 const handleNewChat = async () => {
   await createChatAndNavigate();
 };
