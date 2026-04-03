@@ -8,15 +8,22 @@ export default function useProjects() {
     const id = (projects.value.length + 1)?.toString();
     const project = {
       id,
-      name: "New Project",
+      name: `New Project ${id}`,
     };
 
     projects.value.push(project);
 
     return project;
   };
+
+  const createProjectAndNavigate = async () => {
+    const project = createProject();
+    await navigateTo(`/projects/${project.id}`);
+  };
+
   return {
     projects,
     createProject,
+    createProjectAndNavigate,
   };
 }
