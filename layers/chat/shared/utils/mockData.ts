@@ -1,15 +1,20 @@
-import type { Chat, ChatMessage, Project } from "~/types";
+import type { Chat, ChatMessage, Project } from "../types/types";
+import { v4 as uuidv4 } from "uuid";
 
 const MOCK_MESSAGES: ChatMessage[] = [
   {
-    id: "1",
+    id: uuidv4(),
     role: "user",
     content: "Hello, how are you?",
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
-    id: "2",
+    id: uuidv4(),
     role: "assistant",
     content: "I am fine, thank you!",
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
 ];
 

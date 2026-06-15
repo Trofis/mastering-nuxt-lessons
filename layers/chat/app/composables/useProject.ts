@@ -1,4 +1,4 @@
-import type { Project } from "~/types";
+import type { Project } from "../../shared/types/types";
 import useProjects from "./useProjects";
 
 export default function useProject(projectId: string) {

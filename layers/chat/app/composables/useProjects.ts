@@ -1,5 +1,5 @@
-import type { Project } from "~/types";
-import { MOCK_PROJECT } from "./mockData";
+import type { Project } from "../../shared/types/types";
+import { MOCK_PROJECT } from "../../shared/utils/mockData";
 
 export default function useProjects() {
   const projects = useState<Project[]>("projects", () => [MOCK_PROJECT]);
@@ -9,6 +9,8 @@ export default function useProjects() {
     const project = {
       id,
       name: `New Project ${id}`,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     projects.value.push(project);

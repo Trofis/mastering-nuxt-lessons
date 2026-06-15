@@ -1,5 +1,5 @@
-import type { Chat } from "~/types";
-import { MOCK_CHAT } from "./mockData";
+import type { Chat } from "../../shared/types/types";
+import { MOCK_CHAT } from "../../shared/utils/mockData";
 
 export default function useChats() {
   const chats = useState<Chat[]>("chats", () => [MOCK_CHAT]);

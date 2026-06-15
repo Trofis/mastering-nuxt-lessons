@@ -1,4 +1,4 @@
-import type { ChatMessage } from "~/types";
+import type { ChatMessage } from "../../shared/types/types";
 import useChats from "./useChats";
 
 export default function useChat(chatId: string) {
@@ -13,6 +13,8 @@ export default function useChat(chatId: string) {
       id,
       role,
       content: message,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
   };
 
