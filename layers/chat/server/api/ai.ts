@@ -1,8 +1,4 @@
-import {
-  createOAI,
-  createOpR,
-  generateChatResponse,
-} from "../services/ai.service";
+import { createOAI, generateChatResponse } from "../services/ai.service";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);

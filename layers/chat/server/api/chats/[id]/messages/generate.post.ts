@@ -4,7 +4,6 @@ import {
 } from "~~/layers/chat/server/repository/chatRepository";
 import {
   createOAI,
-  createOpR,
   generateChatResponse,
 } from "~~/layers/chat/server/services/ai.service";
 
