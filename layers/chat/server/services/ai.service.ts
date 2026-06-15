@@ -1,5 +1,6 @@
 import { generateText } from "ai";
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
+import { createOpenAI } from "@ai-sdk/openai";
 import type { CoreMessage, LanguageModelV1 } from "ai";
 
 export const createOpR = (apiKey: string, model: string) => {
@@ -8,6 +9,15 @@ export const createOpR = (apiKey: string, model: string) => {
   });
 
   return openrouter(model);
+};
+
+export const createOAI = (apiKey: string, model: string, url: string) => {
+  const openai = createOpenAI({
+    apiKey,
+    baseURL: url,
+  });
+
+  return openai(model);
 };
 
 export const generateChatResponse = async (

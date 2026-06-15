@@ -1,4 +1,8 @@
-import { createOpR, generateChatResponse } from "../services/ai.service";
+import {
+  createOAI,
+  createOpR,
+  generateChatResponse,
+} from "../services/ai.service";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -8,8 +12,9 @@ export default defineEventHandler(async (event) => {
 
   const openaiApiKey = useRuntimeConfig().openaiApiKey;
   const openaiModel = useRuntimeConfig().openaiModel;
+  const openaiURL = useRuntimeConfig().openaiURL;
 
-  const model = createOpR(openaiApiKey, openaiModel);
+  const model = createOAI(openaiApiKey, openaiModel, openaiURL);
 
   // Transform messages to AI SDK format (remove id, keep only role and content)
   // const formattedMessages = messages.map(

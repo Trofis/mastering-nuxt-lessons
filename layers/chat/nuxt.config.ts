@@ -7,8 +7,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   runtimeConfig: {
-    openaiApiKey: "",
-    openaiModel: "gpt-4o-mini",
+    openaiApiKey: "lm-studio",
+    openaiModel: "google/gemma-4-e4b",
+    openaiURL: "http://localhost:1234/v1",
     public: {
       someValue: "on the frontend!",
     },
