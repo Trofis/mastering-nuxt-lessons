@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { fetchChats } = useChats();
+fetchChats();
+</script>
 
 <template>
   <UApp>

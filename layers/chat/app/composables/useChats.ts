@@ -4,20 +4,25 @@ export default function useChats() {
   /**
    * UseAsyncData only avalaible in top (not used inside functions)
    */
-  const { data: chats } = useAsyncData(
+  const {
+    data: chats,
+    execute,
+    status,
+  } = useAsyncData(
     "chats",
     async () => {
       console.log("Fetching chats ...");
       return await $fetch<Chat[]>("/api/chats");
     },
     {
+      immediate: false,
       default: () => [],
     },
   );
 
   async function fetchChats() {
-    const data = await $fetch<Chat[]>("/api/chats");
-    chats.value = data;
+    if (status.value !== "idle") return;
+    await execute();
   }
 
   const createChat = (options: { projectId?: string } = {}) => {
