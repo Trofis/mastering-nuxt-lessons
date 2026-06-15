@@ -1,6 +1,3 @@
-import type { ChatMessage } from "../../shared/types/types";
-import useChats from "./useChats";
-
 export default function useChat(chatId: string) {
   const { chats } = useChats();
   const chat = computed(() => chats.value.find((c) => c.id === chatId));

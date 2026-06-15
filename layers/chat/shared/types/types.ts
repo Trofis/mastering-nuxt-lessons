@@ -18,6 +18,8 @@ export type Chat = {
 export interface Project {
   id: string;
   name: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ChatWithProject extends Chat {

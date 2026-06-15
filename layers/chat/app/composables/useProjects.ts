@@ -1,6 +1,3 @@
-import type { Project } from "../../shared/types/types";
-import { MOCK_PROJECT } from "../../shared/utils/mockData";
-
 export default function useProjects() {
   const projects = useState<Project[]>("projects", () => [MOCK_PROJECT]);
 
