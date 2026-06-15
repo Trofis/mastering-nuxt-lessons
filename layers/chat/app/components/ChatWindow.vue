@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import ChatInput from "./ChatInput.vue";
-import useChatScroll from "~/layers/chat/app/composables/useChatScroll.js";
-import type { ChatMessage, Chat } from "../types";
 
 // Extract logic from component
 const props = defineProps<{
