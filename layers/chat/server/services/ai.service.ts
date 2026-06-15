@@ -36,3 +36,25 @@ export const generateChatResponse = async (
 
   return response.text.trim();
 };
+
+export async function generateChatTitle(
+  model: LanguageModelV1,
+  firstMessage: string,
+): Promise<string> {
+  const response = await generateText({
+    model,
+    messages: [
+      {
+        role: "system",
+        content:
+          "Generate a title from the following message (short no more than 15-20 characters + emojis)",
+      },
+      {
+        role: "user",
+        content: firstMessage,
+      },
+    ],
+  });
+
+  return response.text.trim();
+}
